@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aadi Trip — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #e63946;
+      --yellow: #f4c430;
+      --green:  #57cc99;
+      --blue:   #4fc3f7;
+      --line-w: 5px;
+      --col-gap: 22px;
+      --left-pad: 18px;
+      --radius: 40px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+    }
+
+    #lines-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-name {
+      padding-top: 64px;
+      padding-left: calc(var(--left-pad) + var(--line-w) + 14px);
+      padding-bottom: 20px;
+    }
+
+    .name-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .spacer { height: 80px; }
+
+    .section-about {
+      padding-left: calc(var(--left-pad) + var(--col-gap) + var(--line-w) + 14px);
+      padding-right: 80px;
+      padding-bottom: 20px;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .about-box {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      padding: 28px 32px;
+      min-height: 180px;
+      max-width: 760px;
+      position: relative;
+    }
+
+    .about-box::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 4px;
+      border: 1px solid #333;
+      pointer-events: none;
+    }
+
+    .about-box textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ccc;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      caret-color: #fff;
+    }
+
+    .about-box textarea::placeholder { color: #333; }
+
+    .section-timeline {
+      padding-left: calc(var(--left-pad) + (var(--col-gap) * 2) + var(--line-w) + 14px);
+      padding-right: 80px;
+      margin-top: 60px;
+    }
+
+    .timeline-placeholder {
+      height: 600px;
+    }
+
+    .turn-zone { height: 160px; }
+
+    .section-contact {
+      padding: 40px 80px 80px;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-type {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-value:hover { color: #fff; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-name     { animation: fadeUp 0.8s ease both; animation-delay: 0.1s; }
+    .section-about    { animation: fadeUp 0.8s ease both; animation-delay: 0.35s; }
+    .section-timeline { animation: fadeUp 0.8s ease both; animation-delay: 0.55s; }
+    .section-contact  { animation: fadeUp 0.8s ease both; animation-delay: 0.7s; }
+  </style>
+</head>
+<body>
+
+<div class="page" id="page">
+
+  <svg id="lines-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div class="content">
+
+    <div class="section-name" id="sec-name">
+      <div class="name-label">Aadi Tripathi</div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="section-about" id="sec-about">
+      <div class="section-label">About Me</div>
+      <div class="about-box">
+        <textarea placeholder="Write your bio here..."></textarea>
+      </div>
+    </div>
+
+    <div class="section-timeline" id="sec-timeline">
+      <div class="section-label">Portfolio</div>
+      <div class="timeline-placeholder"></div>
+    </div>
+
+    <div class="turn-zone" id="turn-zone"></div>
+
+    <div class="section-contact" id="sec-contact">
+      <div class="contact-item">
+        <span class="contact-type">Email</span>
+        <a href="mailto:your@email.com" class="contact-value">your@email.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">LinkedIn</span>
+        <a href="#" class="contact-value">linkedin.com/in/aaditrip1</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-type">GitHub</span>
+        <a href="https://github.com/aaditrip1" target="_blank" class="contact-value">github.com/aaditrip1</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var RED    = '#e63946';
+  var YELLOW = '#f4c430';
+  var GREEN  = '#57cc99';
+  var BLUE   = '#4fc3f7';
+  var LW     = 12.5;
+  var GAP    = 11;
+  var LPAD   = 18;
+  var R      = 40;
+  var NS     = 'http://www.w3.org/2000/svg';
+
+  function lineX(i) { return LPAD + i * (LW + GAP); }
+
+  var xR = lineX(0);
+  var xY = lineX(1);
+  var xG = lineX(2);
+  var xB = lineX(3);
+
+  function makeGlow(id) {
+    var f = document.createElementNS(NS, 'filter');
+    f.setAttribute('id', id);
+    f.setAttribute('x', '-50%');
+    f.setAttribute('y', '-50%');
+    f.setAttribute('width', '200%');
+    f.setAttribute('height', '200%');
+    var blur = document.createElementNS(NS, 'feGaussianBlur');
+    blur.setAttribute('stdDeviation', '3.5');
+    blur.setAttribute('result', 'b');
+    var merge = document.createElementNS(NS, 'feMerge');
+    var n1 = document.createElementNS(NS, 'feMergeNode');
+    n1.setAttribute('in', 'b');
+    var n2 = document.createElementNS(NS, 'feMergeNode');
+    n2.setAttribute('in', 'SourceGraphic');
+    merge.appendChild(n1);
+    merge.appendChild(n2);
+    f.appendChild(blur);
+    f.appendChild(merge);
+    return f;
+  }
+
+  function makePath(d, color, filterId) {
+    var p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', color);
+    p.setAttribute('stroke-width', String(LW));
+    p.setAttribute('stroke-linecap', 'round');
+    p.setAttribute('filter', 'url(#' + filterId + ')');
+    return p;
+  }
+
+  function drawLines() {
+    var svg  = document.getElementById('lines-svg');
+    var page = document.getElementById('page');
+    var W    = page.offsetWidth;
+    var H    = page.offsetHeight;
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    // Clear SVG
+    while (svg.firstChild) { svg.removeChild(svg.firstChild); }
+
+    // Defs / glow filters
+    var defs = document.createElementNS(NS, 'defs');
+    defs.appendChild(makeGlow('gr'));
+    defs.appendChild(makeGlow('gy'));
+    defs.appendChild(makeGlow('gg'));
+    defs.appendChild(makeGlow('gb'));
+    svg.appendChild(defs);
+
+    var nameEl   = document.getElementById('sec-name');
+    var aboutEl  = document.getElementById('sec-about');
+    var timeEl   = document.getElementById('sec-timeline');
+    var turnZone = document.getElementById('turn-zone');
+
+    var startR = nameEl.offsetTop;
+    var startY = aboutEl.offsetTop + 24;
+    var startG = timeEl.offsetTop;
+    var startB = timeEl.offsetTop + 48;
+
+    var tz          = turnZone.offsetTop;
+    var turnBlue    = tz + 20;
+    var turnGreen   = tz + 40;
+    var turnYellow  = tz + 60;
+    var turnRed     = tz + 80;
+
+    var endX = W - 60;
+
+    // RED
+    svg.appendChild(makePath(
+      'M ' + xR + ' ' + startR +
+      ' L ' + xR + ' ' + (turnRed - R) +
+      ' Q ' + xR + ' ' + turnRed + ' ' + (xR + R) + ' ' + turnRed +
+      ' L ' + endX + ' ' + turnRed,
+      RED, 'gr'
+    ));
+
+    // YELLOW
+    svg.appendChild(makePath(
+      'M ' + xY + ' ' + startY +
+      ' L ' + xY + ' ' + (turnYellow - R) +
+      ' Q ' + xY + ' ' + turnYellow + ' ' + (xY + R) + ' ' + turnYellow +
+      ' L ' + endX + ' ' + turnYellow,
+      YELLOW, 'gy'
+    ));
+
+    // GREEN
+    svg.appendChild(makePath(
+      'M ' + xG + ' ' + startG +
+      ' L ' + xG + ' ' + (turnGreen - R) +
+      ' Q ' + xG + ' ' + turnGreen + ' ' + (xG + R) + ' ' + turnGreen +
+      ' L ' + endX + ' ' + turnGreen,
+      GREEN, 'gg'
+    ));
+
+    // BLUE
+    svg.appendChild(makePath(
+      'M ' + xB + ' ' + startB +
+      ' L ' + xB + ' ' + (turnBlue - R) +
+      ' Q ' + xB + ' ' + turnBlue + ' ' + (xB + R) + ' ' + turnBlue +
+      ' L ' + endX + ' ' + turnBlue,
+      BLUE, 'gb'
+    ));
+  }
+
+  window.addEventListener('load', drawLines);
+  window.addEventListener('resize', drawLines);
+  document.querySelector('textarea').addEventListener('input', function() {
+    setTimeout(drawLines, 50);
+  });
+})();
+</script>
+</body>
+</html>
