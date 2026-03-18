@@ -201,7 +201,7 @@
       width: 100%;
     }
     .tl-node.open .tl-card {
-      max-height: 2000px;
+      max-height: 6000px;
       opacity: 1;
     }
     .tl-card-inner {
@@ -558,6 +558,117 @@
 
         </div>
         <!-- end potential flow group -->
+
+        <div class="tl-group-spacer"></div>
+
+        <!-- ── POTENTIAL FLOW CONTINUATION GROUP ── -->
+        <div class="tl-group">
+
+          <!-- Node 1: Continuation Research -->
+          <div class="tl-node" id="node-pf-cont" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">January 2025</span>
+              <span class="tl-title">Potential Flow — Continuation</span>
+              <span class="tl-tag research">Research / Derivation</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label research">Research — Continuation</div>
+
+                <div style="width:100%;max-width:600px;height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+                  <img
+                    src="Potential_flow_research1.jpeg"
+                    alt="Potential flow research page 1"
+                    style="height:600px;width:400px;object-fit:contain;transform:rotate(270deg);"
+                  />
+                </div>
+                <p class="card-desc" style="margin-bottom:20px;">
+                  Revisiting the governing PDEs from scratch — establishing Laplace's equation as the foundation for potential flow and deriving the doublet flow solution used to model a cylinder. Introduces the superposition principle and uniform flow boundary conditions.
+                </p>
+
+                <div style="width:100%;max-width:600px;height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+                  <img
+                    src="Potential_flow_research2.jpeg"
+                    alt="Potential flow research page 2"
+                    style="height:600px;width:400px;object-fit:contain;transform:rotate(270deg);"
+                  />
+                </div>
+                <p class="card-desc" style="margin-bottom:20px;">
+                  Derivation of line sources and sinks, and how superimposing them with a uniform stream produces half-body and Rankine oval geometries — showing that complex body shapes can be constructed purely through flow superposition.
+                </p>
+
+                <div style="width:100%;max-width:600px;height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+                  <img
+                    src="Potential_flow_research3.jpeg"
+                    alt="Potential flow research page 3"
+                    style="height:600px;width:400px;object-fit:contain;transform:rotate(270deg);"
+                  />
+                </div>
+                <p class="card-desc" style="margin-bottom:20px;">
+                  Extends the cylinder solution to include circulation — adding a vortex term that breaks the symmetry of the flow field and generates lift. Covers the Kutta-Joukowski theorem connecting circulation directly to lift force.
+                </p>
+
+                <div style="width:100%;max-width:600px;height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+                  <img
+                    src="Potential_flow_research4.jpeg"
+                    alt="Potential flow research page 4"
+                    style="height:600px;width:400px;object-fit:contain;transform:rotate(270deg);"
+                  />
+                </div>
+                <p class="card-desc" style="margin-bottom:20px;">
+                  Final pages covering the Joukowski conformal transformation — a complex mapping that transforms a cylinder into an airfoil-like shape, allowing potential flow solutions around a cylinder to be directly applied to lifting bodies.
+                </p>
+
+                <div class="card-math">
+                  <h4>Problem Statement</h4>
+                  <p>
+                    After understanding the theory, the goal became: could multiple sources and
+                    sinks be strategically placed and superimposed to construct complex, arbitrary
+                    closed body shapes — and then solve for the full velocity and pressure field
+                    around them? Rather than being limited to a cylinder, the idea was to use
+                    superposition of many elementary flows to define the geometry itself, turning
+                    potential flow into a flexible tool for modeling flow around any shape built
+                    from a distribution of singularities.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-spacer"></div>
+
+          <!-- Node 2: Potential Flow Solver -->
+          <div class="tl-node" id="node-pf-solver" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">March 2025</span>
+              <span class="tl-title">Potential Flow Solver</span>
+              <span class="tl-tag project">Python Project</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label project">Project — Python Implementation</div>
+
+                <p class="card-desc">
+                  A 2D potential flow visualization tool built in Python that superimposes
+                  stream functions from multiple sources, sinks, vortices, and uniform flow
+                  to construct and visualize complex flow fields. The user defines a
+                  configuration of singularities and the solver computes the combined stream
+                  function across a grid, plots the streamlines, and maps the velocity and
+                  pressure distribution — allowing arbitrary body shapes to be modeled
+                  purely through flow superposition.
+                </p>
+
+                <a class="card-link" href="https://github.com/aaditrip1/potential-flow-analyzer" target="_blank">
+                  ↗ VIEW ON GITHUB
+                </a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end potential flow continuation group -->
 
         <div class="tl-group-spacer"></div>
 
