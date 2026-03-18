@@ -91,8 +91,230 @@
       padding-right: 80px;
       margin-top: 60px;
     }
-    .timeline-placeholder { height: 600px; }
     .turn-zone { height: 160px; }
+
+    /* ── TIMELINE ── */
+    .timeline-wrap {
+      position: relative;
+      padding-left: 32px;
+      padding-bottom: 80px;
+    }
+    .timeline-spine {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, #4fc3f7 60px, #4fc3f7);
+      box-shadow: 0 0 8px #4fc3f7, 0 0 24px #4fc3f788;
+    }
+
+    .tl-group {
+      margin-bottom: 0;
+    }
+
+    .tl-node {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    /* dot on the spine */
+    .tl-node::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #4fc3f7;
+      box-shadow: 0 0 6px #4fc3f7, 0 0 14px #4fc3f7aa;
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 2;
+    }
+    .tl-node:hover::before,
+    .tl-node.open::before {
+      transform: scale(1.5);
+      box-shadow: 0 0 10px #4fc3f7, 0 0 28px #4fc3f7;
+    }
+
+    /* connector line from spine dot to card */
+    .tl-node::after {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 22px;
+      width: 27px;
+      height: 1px;
+      background: #4fc3f755;
+      transition: background 0.2s;
+    }
+    .tl-node:hover::after,
+    .tl-node.open::after {
+      background: #4fc3f7;
+    }
+
+    .tl-collapsed {
+      padding: 14px 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 220px;
+      flex-shrink: 0;
+    }
+    .tl-year {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: #4fc3f7aa;
+      text-transform: uppercase;
+    }
+    .tl-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      color: #fff;
+      transition: color 0.2s;
+    }
+    .tl-node:hover .tl-title,
+    .tl-node.open .tl-title { color: #4fc3f7; }
+
+    .tl-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: #555;
+      text-transform: uppercase;
+    }
+    .tl-tag.research { color: #f4c43088; }
+    .tl-tag.project  { color: #57cc9988; }
+
+    /* expand card */
+    .tl-card {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+      opacity: 0;
+      width: 100%;
+    }
+    .tl-node.open .tl-card {
+      max-height: 2000px;
+      opacity: 1;
+    }
+    .tl-card-inner {
+      margin: 0 0 32px 220px;
+      background: #0e0e0e;
+      border: 1px solid #1e1e1e;
+      border-left: 2px solid #4fc3f755;
+      border-radius: 0 4px 4px 0;
+      padding: 28px 32px;
+      transform-origin: left center;
+      animation: none;
+    }
+    .tl-node.open .tl-card-inner {
+      animation: expandCard 0.45s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes expandCard {
+      from { transform: scaleX(0.92) scaleY(0.96); opacity: 0; }
+      to   { transform: scaleX(1) scaleY(1); opacity: 1; }
+    }
+
+    .card-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #4fc3f7;
+      margin-bottom: 16px;
+    }
+    .card-label.research { color: #f4c430; }
+    .card-label.project  { color: #57cc99; }
+
+    .card-photo {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 3px;
+      border: 1px solid #222;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .card-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #aaa;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+    .card-math {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 3px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+    .card-math h4 {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: #555;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .card-math p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      line-height: 1.8;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .card-math p:last-child { margin-bottom: 0; }
+    .card-math .eq {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #ccc;
+      background: #111;
+      border-left: 2px solid #4fc3f755;
+      padding: 8px 14px;
+      margin: 10px 0;
+      display: block;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .card-plot {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 3px;
+      border: 1px solid #222;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #57cc99;
+      text-decoration: none;
+      border: 1px solid #57cc9944;
+      padding: 8px 16px;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .card-link:hover {
+      background: #57cc9911;
+      border-color: #57cc99;
+    }
+
+    /* vertical spacer between nodes in same group */
+    .tl-spacer { height: 8px; }
+    .tl-group-spacer { height: 48px; }
     .section-contact {
       padding: 40px 80px 80px;
       display: flex;
@@ -145,17 +367,117 @@
     </div>
     <div class="section-timeline" id="sec-timeline">
       <div class="section-label">Portfolio</div>
-      <div class="timeline-placeholder"></div>
+      <div class="timeline-wrap">
+        <div class="timeline-spine"></div>
+
+        <!-- ── BERNOULLI GROUP ── -->
+        <div class="tl-group">
+
+          <!-- Node 1: Research -->
+          <div class="tl-node" id="node-b-research" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">2024</span>
+              <span class="tl-title">Bernoulli Research</span>
+              <span class="tl-tag research">Research / Derivation</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label research">Research — Hand Derivation</div>
+
+                <p class="card-desc">
+                  Before writing a single line of code, the governing physics were derived by hand.
+                  Starting from the continuity equation and Bernoulli's principle, the problem was
+                  reformulated around arbitrary wall geometry — replacing fixed straight walls with
+                  continuous functions, allowing any smooth channel shape to be analyzed.
+                </p>
+
+                <div class="card-math">
+                  <h4>Mathematical Formulation</h4>
+                  <p>
+                    The goal was to simulate how fluid velocity and pressure change as flow moves
+                    through a channel with complex, varying wall geometry. Instead of assuming simple
+                    straight walls, the channel boundaries are defined as mathematical functions,
+                    allowing the solver to handle any smooth shape — making it directly applicable
+                    to real engineering geometries like rocket nozzles and jet engine inlets.
+                  </p>
+                  <p>
+                    The upper and lower boundaries are defined as continuous functions P(x) and Q(x).
+                    The cross-sectional area at any position x is:
+                  </p>
+                  <span class="eq">A(x) = ∫ [ P(x) − Q(x) ] dx</span>
+                  <p>
+                    To validate the method, two parabolic test functions were chosen:
+                    P(x) = 0.001x² + 20 and Q(x) = −0.001x² + 10, producing a diverging channel
+                    whose area grows with x.
+                  </p>
+                  <p>With area known at every cross-section, continuity enforces conservation of mass flow:</p>
+                  <span class="eq">Q = A₁V₁ = A₂V₂  →  V(x) = Q / A(x)</span>
+                  <p>Velocity at each slice is solved from the inlet flow rate and local area, then substituted into Bernoulli's equation to recover pressure:</p>
+                  <span class="eq">P₁ + ½ρV₁² + ρgh₁ = P₂ + ½ρV₂² + ρgh₂</span>
+                  <p>
+                    The domain is discretized into 100 cross-sectional slices (n = 0 to 99).
+                    At each slice the solver computes area, solves for velocity, then solves for
+                    pressure — iterating downstream until the full field is resolved.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-spacer"></div>
+
+          <!-- Node 2: Project -->
+          <div class="tl-node" id="node-b-project" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">2024</span>
+              <span class="tl-title">Bernoulli Flow Solver</span>
+              <span class="tl-tag project">Python Project</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label project">Project — Python Implementation</div>
+
+                <p class="card-desc">
+                  A Python solver that takes any two user-defined wall functions and computes
+                  velocity and pressure at every cross-section along the channel. The solver
+                  discretizes the geometry into 100 slices, applies continuity to find velocity,
+                  then solves Bernoulli's equation downstream — outputting full velocity and
+                  pressure field plots with color gradients mapped to magnitude.
+                </p>
+
+                <img
+                  class="card-plot"
+                  src="Screenshot_20260317_180008.png"
+                  alt="Bernoulli solver output — velocity and pressure fields"
+                  onerror="this.style.display='none'"
+                />
+
+                <br/>
+                <a class="card-link" href="https://github.com/aaditrip1" target="_blank">
+                  ↗ VIEW ON GITHUB
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end bernoulli group -->
+
+        <div class="tl-group-spacer"></div>
+
+        <!-- Future projects will go here -->
+
+      </div>
     </div>
     <div class="turn-zone" id="turn-zone"></div>
     <div class="section-contact" id="sec-contact">
       <div class="contact-item">
         <span class="contact-type">Email</span>
-        <a href="mailto:your@email.com" class="contact-value">your@email.com</a>
+        <a href="mailto:aadi.tripathi@gmail.com" class="contact-value">aadi.tripathi@gmail.com</a>
       </div>
       <div class="contact-item">
         <span class="contact-type">LinkedIn</span>
-        <a href="#" class="contact-value">linkedin.com/in/aaditrip1</a>
+        <a href="https://www.linkedin.com/in/aaditrip" target="_blank" class="contact-value">linkedin.com/in/aaditrip</a>
       </div>
       <div class="contact-item">
         <span class="contact-type">GitHub</span>
@@ -165,6 +487,16 @@
   </div>
 </div>
 <script>
+  function toggleNode(el) {
+    var isOpen = el.classList.contains('open');
+    document.querySelectorAll('.tl-node.open').forEach(function(n) {
+      n.classList.remove('open');
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+    }
+  }
+
 (function() {
   var RED    = '#e63946';
   var YELLOW = '#f4c430';
@@ -276,10 +608,21 @@
       BLUE, 'fb'));
   }
 
+  window.drawLines = drawLines;
+
+  // ResizeObserver fires every animation frame the page height changes
+  // giving smooth jank-free SVG updates during CSS card transitions
+  if (window.ResizeObserver) {
+    window.addEventListener('load', function() {
+      var ro = new ResizeObserver(function() {
+        requestAnimationFrame(drawLines);
+      });
+      ro.observe(document.getElementById('page'));
+    });
+  }
+
   window.addEventListener('load', function() {
     drawLines();
-    setTimeout(drawLines, 200);
-    setTimeout(drawLines, 600);
   });
   window.addEventListener('resize', drawLines);
 })();
