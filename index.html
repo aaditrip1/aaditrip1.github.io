@@ -376,7 +376,7 @@
           <!-- Node 1: Research -->
           <div class="tl-node" id="node-b-research" onclick="toggleNode(this)">
             <div class="tl-collapsed">
-              <span class="tl-year">2024</span>
+              <span class="tl-year">June 2024</span>
               <span class="tl-title">Bernoulli Research</span>
               <span class="tl-tag research">Research / Derivation</span>
             </div>
@@ -384,40 +384,51 @@
               <div class="tl-card-inner">
                 <div class="card-label research">Research — Hand Derivation</div>
 
-                <p class="card-desc">
-                  Before writing a single line of code, the governing physics were derived by hand.
-                  Starting from the continuity equation and Bernoulli's principle, the problem was
-                  reformulated around arbitrary wall geometry — replacing fixed straight walls with
-                  continuous functions, allowing any smooth channel shape to be analyzed.
-                </p>
+                <!-- Notebook photos -->
+                <div style="width:100%;max-width:600px;height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                  <img
+                    src="Bernoulli_Research.jpeg"
+                    alt="Hand-written derivation from research notebook"
+                    style="height:600px;width:400px;object-fit:contain;transform:rotate(270deg);"
+                  />
+                </div>
 
+                <!-- Problem Statement -->
+                <div class="card-math">
+                  <h4>Problem Statement</h4>
+                  <p>
+                    Could Calculus II techniques be used to model how pressure changes as an
+                    incompressible fluid flows through a channel with complex, continuously varying
+                    wall geometry? Rather than assuming simple straight walls, the goal was to
+                    define the channel boundaries as arbitrary smooth functions — then use
+                    integration and Bernoulli's equation to resolve the full pressure and velocity
+                    field at every cross-section downstream.
+                  </p>
+                </div>
+
+                <!-- Clean Math -->
                 <div class="card-math">
                   <h4>Mathematical Formulation</h4>
                   <p>
-                    The goal was to simulate how fluid velocity and pressure change as flow moves
-                    through a channel with complex, varying wall geometry. Instead of assuming simple
-                    straight walls, the channel boundaries are defined as mathematical functions,
-                    allowing the solver to handle any smooth shape — making it directly applicable
-                    to real engineering geometries like rocket nozzles and jet engine inlets.
-                  </p>
-                  <p>
-                    The upper and lower boundaries are defined as continuous functions P(x) and Q(x).
-                    The cross-sectional area at any position x is:
+                    The upper and lower channel walls are defined as continuous functions P(x) and Q(x).
+                    The cross-sectional area at any position x is found by integrating the gap between them:
                   </p>
                   <span class="eq">A(x) = ∫ [ P(x) − Q(x) ] dx</span>
                   <p>
-                    To validate the method, two parabolic test functions were chosen:
-                    P(x) = 0.001x² + 20 and Q(x) = −0.001x² + 10, producing a diverging channel
-                    whose area grows with x.
+                    For validation, parabolic test walls were chosen — P(x) = 0.001x² + 20 and
+                    Q(x) = −0.001x² + 10 — producing a diverging channel whose area grows with x.
+                    With area defined at every slice, conservation of mass (continuity) gives velocity:
                   </p>
-                  <p>With area known at every cross-section, continuity enforces conservation of mass flow:</p>
                   <span class="eq">Q = A₁V₁ = A₂V₂  →  V(x) = Q / A(x)</span>
-                  <p>Velocity at each slice is solved from the inlet flow rate and local area, then substituted into Bernoulli's equation to recover pressure:</p>
+                  <p>
+                    As the channel widens, velocity drops. That velocity is then substituted into
+                    Bernoulli's equation to recover the pressure at each cross-section:
+                  </p>
                   <span class="eq">P₁ + ½ρV₁² + ρgh₁ = P₂ + ½ρV₂² + ρgh₂</span>
                   <p>
-                    The domain is discretized into 100 cross-sectional slices (n = 0 to 99).
-                    At each slice the solver computes area, solves for velocity, then solves for
-                    pressure — iterating downstream until the full field is resolved.
+                    The domain is discretized into 100 slices (n = 0 → 99). At each slice the solver
+                    computes area, solves for velocity, then solves for pressure — marching downstream
+                    until the full field is resolved.
                   </p>
                 </div>
               </div>
@@ -429,7 +440,7 @@
           <!-- Node 2: Project -->
           <div class="tl-node" id="node-b-project" onclick="toggleNode(this)">
             <div class="tl-collapsed">
-              <span class="tl-year">2024</span>
+              <span class="tl-year">July 2024</span>
               <span class="tl-title">Bernoulli Flow Solver</span>
               <span class="tl-tag project">Python Project</span>
             </div>
@@ -438,22 +449,16 @@
                 <div class="card-label project">Project — Python Implementation</div>
 
                 <p class="card-desc">
-                  A Python solver that takes any two user-defined wall functions and computes
-                  velocity and pressure at every cross-section along the channel. The solver
-                  discretizes the geometry into 100 slices, applies continuity to find velocity,
-                  then solves Bernoulli's equation downstream — outputting full velocity and
-                  pressure field plots with color gradients mapped to magnitude.
+                  A Python script that takes any two user-defined wall functions P(x) and Q(x),
+                  discretizes the channel into 100 cross-sectional slices, and marches downstream —
+                  applying continuity to solve for velocity at each slice, then Bernoulli's equation
+                  to recover pressure. Outputs four plots: the raw channel geometry, velocity as a
+                  function of x, the channel shaded by velocity gradient, and the channel shaded
+                  by pressure gradient — giving a full visual picture of how the flow field evolves
+                  through any smooth geometry.
                 </p>
 
-                <img
-                  class="card-plot"
-                  src="Screenshot_20260317_180008.png"
-                  alt="Bernoulli solver output — velocity and pressure fields"
-                  onerror="this.style.display='none'"
-                />
-
-                <br/>
-                <a class="card-link" href="https://github.com/aaditrip1" target="_blank">
+                <a class="card-link" href="https://github.com/aaditrip1/BernoulliScript" target="_blank">
                   ↗ VIEW ON GITHUB
                 </a>
               </div>
@@ -473,7 +478,7 @@
     <div class="section-contact" id="sec-contact">
       <div class="contact-item">
         <span class="contact-type">Email</span>
-        <a href="mailto:aadi.tripathi@gmail.com" class="contact-value">aadi.tripathi@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#3d5c5c595413494f544d5c4955547d5a505c5451135e5250" class="contact-value"><span class="__cf_email__" data-cfemail="5e3f3f3a37702a2c372e3f2a36371e39333f3732703d3133">[email&#160;protected]</span></a>
       </div>
       <div class="contact-item">
         <span class="contact-type">LinkedIn</span>
@@ -486,7 +491,7 @@
     </div>
   </div>
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleNode(el) {
     var isOpen = el.classList.contains('open');
     document.querySelectorAll('.tl-node.open').forEach(function(n) {
