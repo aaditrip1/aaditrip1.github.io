@@ -768,6 +768,112 @@
         </div>
         <!-- end potential flow continuation group -->
 
+        <div class="tl-group-spacer"></div>
+
+        <!-- ── FLOW PAPER GROUP ── -->
+        <div class="tl-group">
+
+          <div class="tl-node" id="node-flow-paper" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">March 2025</span>
+              <span class="tl-title">Potential Flow & FVM — Research Paper</span>
+              <span class="tl-tag research">Research / Derivation</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label research">Research — Academic Paper</div>
+
+                <a class="card-link" href="Flow.pdf" target="_blank">
+                  ↗ VIEW PAPER
+                </a>
+
+                <p class="card-desc" style="margin-top:20px;">
+                  An unfinished academic paper written to formalize 6 months of self-study.
+                  Rather than referencing textbooks, the goal was to derive everything from
+                  scratch — starting from a single particle in an infinite volume and building
+                  up to the full FVM discretization scheme for potential flow over complex
+                  bodies. Writing it as a paper was the method of understanding it.
+                </p>
+
+                <div class="card-math">
+                  <h4>§1 — Conservation Laws from First Principles</h4>
+                  <p>
+                    Started with a single particle χ in an infinite volume — derived mass
+                    conservation, momentum conservation, and energy from scratch before
+                    touching fluid mechanics.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>§2 — Continuity Equation</h4>
+                  <p>
+                    Extended single-particle conservation to a fluid — density, divergence,
+                    incompressibility condition ∇·ū = 0.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>§3 — Material Derivative &amp; Navier-Stokes</h4>
+                  <p>
+                    Derived the material derivative Dξ/Dt, Reynolds Transport Theorem, and
+                    the full momentum equation for a viscous fluid.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>§4 — Finite Volume Method</h4>
+                  <p>
+                    Defined the discretized control volume — tetrahedral cells, centroids G,
+                    faces, normals, areas, neighbors, ghost centroids, and flux conservation
+                    at every cell.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>§5 — Potential Flow Theory</h4>
+                  <p>
+                    Laplace's equation ∇²φ = 0, stream function ψ, complex potential.
+                    Derived uniform flow, sources, sinks, and the Rankine Half Body
+                    analytically.
+                  </p>
+                  <span class="eq">∇²φ = 0</span>
+                </div>
+
+                <div class="card-math">
+                  <h4>§6 — Flow Around a Cylinder</h4>
+                  <p>
+                    Combined uniform flow and a doublet to derive the full streamline and
+                    pressure field around a cylinder. Stagnation points, symmetric pressure
+                    distribution.
+                  </p>
+                  <span class="eq">ψ = Ur(1 + R²/r²)sinθ</span>
+                </div>
+
+                <div class="card-math">
+                  <h4>§7 — Rotating Cylinder &amp; Circulation</h4>
+                  <p>
+                    Added a vortex to the cylinder solution — derived circulation Γ,
+                    asymmetric pressure field, and the mechanism behind lift.
+                  </p>
+                  <span class="eq">ψ = Ur(1 + R²/r²)sinθ − (Γ/2π)ln(r/R)</span>
+                </div>
+
+                <div class="card-math">
+                  <h4>§8 — Boundary Layer Theory</h4>
+                  <p>
+                    Stokes' first problem, no-slip condition, similarity variable η, stream
+                    function approach — reduced to the Blasius ODE.
+                  </p>
+                  <span class="eq">½f'f'' + f''' = 0</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end flow paper group -->
+
         <!-- Future projects will go here -->
 
       </div>
