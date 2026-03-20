@@ -470,6 +470,104 @@
 
         <div class="tl-group-spacer"></div>
 
+        <!-- ── THE ROAD TO FVM GROUP ── -->
+        <div class="tl-group">
+
+          <div class="tl-node" id="node-fvm-road" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">September 2024</span>
+              <span class="tl-title">The Road to FVM</span>
+              <span class="tl-tag research">Research / Derivation</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label research">Research — Theory & Derivation</div>
+
+                <a class="card-link" href="equations.pdf" target="_blank">
+                  ↗ VIEW RESEARCH DOCUMENT
+                </a>
+
+                <p class="card-desc">
+                  This document is a research dump — raw notes, derivations, and ideas gathered
+                  across 8 months of self-study. It is not polished or linear. It is the actual
+                  process of learning.
+                </p>
+
+                <div class="card-math">
+                  <h4>September 2024 — Ideal Fluids &amp; Governing Equations</h4>
+                  <p>
+                    First attempt at understanding what the continuity and momentum equations were
+                    actually saying — not yet deriving them, just parsing the physics. Mass
+                    conservation, incompressibility, ∇·ū = 0.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>October 2024 — Navier-Stokes</h4>
+                  <p>
+                    Built up ΣF/V from momentum flux, worked through pressure, viscosity, and
+                    gravity terms to arrive at the full N-S equations. Bernoulli's equation as
+                    a simplified case.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>October 2024 — Heat Equation &amp; Finite Difference Method</h4>
+                  <p>
+                    Used the 1D heat equation as a gateway into numerical methods — forward
+                    difference in time, central difference in space, stability condition
+                    dt ≤ 0.5·dx²/α. First time translating a PDE into working code.
+                  </p>
+                  <span class="eq">∂T/∂t = α(∂²T/∂x²)</span>
+                  <span class="eq">T_n^(m+1) = T_n^m + α(dt/dx²)[ T_(n+1)^m − 2T_n^m + T_(n-1)^m ]</span>
+                </div>
+
+                <div class="card-math">
+                  <h4>March 2025 — Boundary Layer Theory</h4>
+                  <p>
+                    Introductory study of Stokes' first problem, no-slip condition, steady-state
+                    vs. transient solution. Notebook only.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>April 2025 — FVM Cell Data &amp; Mesh Setup</h4>
+                  <p>
+                    Centroids, faces, normals, areas, neighbors, ghost centroids. The building
+                    blocks of discretizing a 3D volume around a complex body.
+                  </p>
+                </div>
+
+                <div class="card-math">
+                  <h4>April 2025 — FVM Discretization &amp; Laplacian</h4>
+                  <p>
+                    Derived the flux-weighted Laplacian ∇²φ = 0, weight term w_f, and reduced
+                    the problem to an AX = B matrix where X = φ.
+                  </p>
+                  <span class="eq">w_f = (d̂_GNf · n̂_f) A_f / ‖Ṅ_f − Ġ‖</span>
+                  <span class="eq">φ_G = Σ w_f φ_Nf / Σ w_f</span>
+                </div>
+
+                <div class="card-math">
+                  <h4>May 2025 — Iterative Solver &amp; Convergence</h4>
+                  <p>
+                    Gauss-Seidel style update scheme, residual tracking, convergence threshold ε.
+                    Boundary conditions enforced at every iteration — outer domain φ = Ux,
+                    surface ū·n = 0.
+                  </p>
+                  <span class="eq">φ_G^(k+1) = Σ w_f φ_Nf^(*) / Σ w_f</span>
+                  <span class="eq">R_G = Σ ᚱ²_G  →  stop when R_G ≤ ε</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end road to fvm group -->
+
+        <div class="tl-group-spacer"></div>
+
         <!-- ── POTENTIAL FLOW GROUP ── -->
         <div class="tl-group">
 
@@ -669,8 +767,6 @@
 
         </div>
         <!-- end potential flow continuation group -->
-
-        <div class="tl-group-spacer"></div>
 
         <!-- Future projects will go here -->
 
