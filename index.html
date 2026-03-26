@@ -874,6 +874,186 @@
         </div>
         <!-- end flow paper group -->
 
+        <div class="tl-group-spacer"></div>
+
+        <!-- ── FVM RESEARCH GROUP ── -->
+        <div class="tl-group">
+
+          <div class="tl-node" id="node-fvm-research" onclick="toggleNode(this)">
+            <div class="tl-collapsed">
+              <span class="tl-year">April 2025</span>
+              <span class="tl-title">FVM Research</span>
+              <span class="tl-tag research">Research / Derivation</span>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-inner">
+                <div class="card-label research">Research — Hand Derivation · Book IV</div>
+
+                <!-- §1 Conservation Laws -->
+                <div class="card-math">
+                  <h4>§1 — Conservation Laws &amp; Thermodynamic Foundation</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2559.JPG" alt="Conservation laws derivation" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2560.JPG" alt="Energy and thermodynamics" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2561.JPG" alt="Material derivative derivation" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2562.JPG" alt="Mass and momentum conservation" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    Mass conservation, momentum, and energy were derived from first principles using
+                    the Reynolds Transport Theorem before any fluid-specific assumptions were applied.
+                    The material derivative was introduced to track how quantities change as a fluid
+                    parcel moves through the flow field.
+                  </p>
+                </div>
+
+                <!-- §2 Problem Definition -->
+                <div class="card-math">
+                  <h4>§2 — Problem Definition &amp; Boundary Conditions</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2563.JPG" alt="First airfoil sketches" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2564.JPG" alt="Domain and boundary condition setup" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    The simulation domain was defined as the fluid volume between the model surface
+                    and an outer far-field boundary. Two boundary conditions fully constrain the
+                    solution: no-penetration at the wall, and freestream velocity recovery far from
+                    the body.
+                  </p>
+                </div>
+
+                <!-- §3 FVM Architecture -->
+                <div class="card-math">
+                  <h4>§3 — Finite Volume Method &amp; Mesh Architecture</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2565.JPG" alt="FVM pipeline and tetrahedral mesh" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2566.JPG" alt="Incompressible flow and cell structure" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2568.JPG" alt="Cell data structure" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2570.JPG" alt="Data table and flow architecture" style="width:100%;height:140px;object-fit:cover;transform:rotate(270deg) scale(1.4);transform-origin:center center;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    The domain is discretized into tetrahedral cells, each storing its centroid,
+                    face areas, outward normal vectors, neighbor indices, and centroid-to-centroid
+                    distances. This per-cell data structure is everything needed to evaluate flux
+                    across every face in the mesh.
+                  </p>
+                </div>
+
+                <!-- §4 Laplacian Discretization -->
+                <div class="card-math">
+                  <h4>§4 — Laplacian Discretization &amp; Matrix Assembly</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2571.JPG" alt="Ghost centroids and full equation" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2572.JPG" alt="Matrix setup Aphi equals B" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2573.JPG" alt="Gradient approximation" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2574.JPG" alt="Complete system writeout" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    Laplace's equation was discretized over the unstructured mesh by expressing the
+                    flux through each face as a function of neighboring potential values weighted by
+                    face geometry. Ghost centroids at boundary faces enforce wall and freestream
+                    conditions within the same matrix — assembling into a sparse linear system where
+                    each row encodes one cell's flux balance.
+                  </p>
+                </div>
+
+                <!-- §5 Iterative Solver -->
+                <div class="card-math">
+                  <h4>§5 — Iterative Solver &amp; Convergence</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2575.JPG" alt="Gauss-Seidel and first convergence" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2576.JPG" alt="Laplacian solver formal statement" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2577.JPG" alt="Boundary conditions and internal cells" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2578.JPG" alt="Residual and convergence criterion" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    The system was solved iteratively using Gauss-Seidel — updating each cell's
+                    potential using the most recently computed neighbor values. Iteration continued
+                    until the maximum residual across the mesh dropped below a defined threshold,
+                    at which point a final global solve produced the converged potential field.
+                  </p>
+                </div>
+
+                <!-- §6 Velocity and Pressure -->
+                <div class="card-math">
+                  <h4>§6 — Velocity &amp; Pressure Recovery</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2579.JPG" alt="Navier-Stokes and potential flow connection" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2580.JPG" alt="Pressure equation derived" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    The velocity field was recovered from the converged potential via least-squares
+                    gradient reconstruction at each cell. Static pressure was then computed from the
+                    incompressible Bernoulli equation, yielding the full pressure distribution over
+                    the body surface.
+                  </p>
+                </div>
+
+                <!-- §7 Lift Drag Output -->
+                <div class="card-math">
+                  <h4>§7 — Lift, Drag &amp; Aerodynamic Output</h4>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#0d0d0d;border:1px solid #1a1a1a;border-radius:3px;padding:6px;margin-bottom:14px;">
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2581.JPG" alt="Lift drag coefficients and end of Book IV" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                    <div style="background:#111;border:1px solid #1e1e1e;border-radius:2px;overflow:hidden;">
+                      <img src="IMG_2582.JPG" alt="Chapter 4 opening and shape optimization" style="width:100%;height:140px;object-fit:cover;display:block;" />
+                    </div>
+                  </div>
+                  <p>
+                    The pressure field was integrated over all surface faces to compute the net
+                    aerodynamic force, then decomposed into lift and drag and normalized by dynamic
+                    pressure to produce dimensionless coefficients. This marks the end of the
+                    research phase and the direct starting point for the solver implementation.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end fvm research group -->
+
         <!-- Future projects will go here -->
 
       </div>
