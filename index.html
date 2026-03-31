@@ -34,7 +34,7 @@
 
     /* xR right edge ~24px → name starts at 40px */
     .section-name {
-      padding-top: 64px;
+      padding-top: 4px;
       padding-left: 40px;
       padding-bottom: 20px;
     }
@@ -52,6 +52,7 @@
       padding-left: 60px;
       padding-right: 80px;
       padding-bottom: 20px;
+      margin-top: 30px;
     }
     .section-label {
       font-family: 'Share Tech Mono', monospace;
@@ -362,7 +363,7 @@
     <div class="section-about" id="sec-about">
       <div class="section-label">About Me</div>
       <div class="about-box">
-        <p class="bio-text">bio</p>
+        <p class="bio-text">My name is Aadi Tripathi, and as a student, fluid dynamics and aerodynamic design have fascinated me for a long time; understanding this field has been a massive mountain to climb. These are a few of the milestones along my journey so far.</p>
       </div>
     </div>
     <div class="section-timeline" id="sec-timeline">
@@ -1105,7 +1106,7 @@
     <div class="section-contact" id="sec-contact">
       <div class="contact-item">
         <span class="contact-type">Email</span>
-        <a href="/cdn-cgi/l/email-protection#3d5c5c595413494f544d5c4955547d5a505c5451135e5250" class="contact-value"><span class="__cf_email__" data-cfemail="5e3f3f3a37702a2c372e3f2a36371e39333f3732703d3133">[email&#160;protected]</span></a>
+        <a href="mailto:aadi.tripathi@gmail.com" class="contact-value">aadi.tripathi@gmail.com</a>
       </div>
       <div class="contact-item">
         <span class="contact-type">LinkedIn</span>
@@ -1118,7 +1119,7 @@
     </div>
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function toggleNode(el) {
     var isOpen = el.classList.contains('open');
     document.querySelectorAll('.tl-node.open').forEach(function(n) {
@@ -1200,7 +1201,7 @@
     var turnZone = document.getElementById('turn-zone');
 
     var startR = nameEl.offsetTop;
-    var startY = aboutEl.offsetTop + 24;
+    var startY = aboutEl.offsetTop + 24 - 20;
     var startG = timeEl.offsetTop;
     var startB = timeEl.offsetTop + 48;
 
