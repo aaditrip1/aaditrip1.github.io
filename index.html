@@ -350,6 +350,35 @@
     .section-about    { animation: fadeUp 0.8s ease both; animation-delay: 0.35s; }
     .section-timeline { animation: fadeUp 0.8s ease both; animation-delay: 0.55s; }
     .section-contact  { animation: fadeUp 0.8s ease both; animation-delay: 0.7s; }
+
+    /* ── MOBILE PORTRAIT (<=768px) — laptop never enters this block ── */
+    @media (max-width: 768px) {
+      .section-name     { padding-left: 20px; padding-right: 16px; }
+      .section-about    { padding-left: 20px; padding-right: 16px; margin-top: 20px; }
+      .section-timeline { padding-left: 20px; padding-right: 16px; margin-top: 40px; }
+      .about-box        { padding: 18px 16px; min-height: 0; max-width: 100%; }
+      .spacer           { height: 40px; }
+      .timeline-wrap    { padding-left: 24px; }
+      .tl-collapsed     { min-width: 0; width: 100%; }
+      .tl-title         { font-size: 17px; white-space: normal; }
+      .tl-card-inner    { margin: 0 0 24px 0; padding: 18px 16px; }
+      .tl-node::before  { left: -29px; }
+      .tl-node::after   { left: -19px; width: 19px; }
+      .card-desc        { max-width: 100%; }
+      .card-math        { max-width: 100%; }
+      .card-photo,
+      .card-plot        { max-width: 100%; }
+      .section-contact  { flex-direction: column; gap: 24px; padding: 32px 20px 60px; }
+    }
+
+    /* ── MOBILE LANDSCAPE — partial indent restored, more room horizontally ── */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .section-name     { padding-left: 32px; padding-right: 24px; }
+      .section-about    { padding-left: 32px; padding-right: 24px; }
+      .section-timeline { padding-left: 32px; padding-right: 24px; }
+      .tl-card-inner    { margin: 0 0 24px 80px; }
+      .section-contact  { flex-direction: row; gap: 40px; padding: 32px 32px 60px; }
+    }
   </style>
 </head>
 <body>
@@ -1247,8 +1276,13 @@
   // giving smooth jank-free SVG updates during CSS card transitions
   if (window.ResizeObserver) {
     window.addEventListener('load', function() {
+      var roTimer = null;
       var ro = new ResizeObserver(function() {
-        requestAnimationFrame(drawLines);
+        if (roTimer) return;
+        roTimer = requestAnimationFrame(function() {
+          drawLines();
+          roTimer = null;
+        });
       });
       ro.observe(document.getElementById('page'));
     });
